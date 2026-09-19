@@ -1,0 +1,148 @@
+19: Class `Texy\HandlerInvocation` is removed: the event system is gone; register a pass with `Texy\Texy::addPass()` or a renderer with `Texy\Output\Html\Config::addRenderer()`, since texy/texy 4.0.
+19: Class `Texy\Link` is removed: a link is a `Texy\Nodes\LinkNode` of the document tree, since texy/texy 4.0.
+22: Method `Texy\Texy::setOutputMode()` is removed: there is no replacement; the output is always HTML5, since texy/texy 3.1.
+22: Constant `Texy\Texy::XHTML1_STRICT` is removed: there is no replacement; XHTML is not generated any more and the output is always HTML5, since texy/texy 3.1.
+23: Method `Texy\Texy::getOutputMode()` is removed: there is no replacement; the output is always HTML5, since texy/texy 3.1.
+24: Property `Texy\Texy::$encoding` is removed: the input and the output are always UTF-8; drop the setting, since texy/texy 3.0.
+25: Property `Texy\Texy::$styleSheet` is removed: there is no replacement; Texy never read the property; keep the stylesheet in a variable of the application, since texy/texy 3.0.
+26: Property `Texy\Texy::$xhtml` is removed: there is no replacement; the output is always HTML5; drop the setting, since texy/texy 3.1.
+27: Static property `Texy\Texy::$strictDTD` is removed: there is no replacement; the output is always HTML5; drop the setting, since texy/texy 3.1.
+28: Static property `Texy\Texy::$advertisingNotice` is removed: the property had no effect since it was deprecated; drop the setting, since texy/texy 3.0.
+29: Property `Texy\Texy::$cleaner` is removed: use `$texy->htmlOutput`, which holds the settings of HTML output, since texy/texy 4.0.
+30: Property `Texy\Modules\HtmlOutputModule::$removeOptional` is removed: optional end tags are never removed; drop the setting, since texy/texy 3.1.
+31: Property `Texy\Modules\LinkModule::$popupOnClick` is removed: there is no replacement; pop-up links are not supported, since texy/texy 3.0.
+32: Property `Texy\Modules\LinkModule::$imageOnClick` is removed: there is no replacement; pop-up links are not supported, since texy/texy 3.0.
+33: Property `Texy\Modules\ImageModule::$onLoad` is removed: there is no replacement; the mouse-over state of images is not supported, since texy/texy 3.0.
+34: Property `Texy\Modules\ScriptModule::$handler` is removed: use `$texy->config->directiveHandler`, since texy/texy 4.0.
+35: Property `Texy\Texy::$dtd` is removed: the DTD is a static read-only table and can no longer be changed at run time, since texy/texy 3.1.
+36: Property `Texy\Texy::$_classes` is removed: the property is private; the allowed classes are configured by `$texy->htmlPolicy->allowedClasses`, since texy/texy 4.0.
+37: Property `Texy\Texy::$_styles` is removed: the property is private; the allowed styles are configured by `$texy->htmlPolicy->allowedStyles`, since texy/texy 4.0.
+38: Class `Texy\HtmlElement` is removed: create a `Texy\Output\Html\Element` in a renderer, whose constructor takes attributes only, since texy/texy 4.0.
+38: Static property `Texy\HtmlElement::$xhtml` is removed: there is no replacement; the output is always HTML5; drop the setting, since texy/texy 3.1.
+39: Constant `Texy\Texy::REVISION` is removed: there is no replacement; `VERSION` holds the version, since texy/texy 3.0.
+40: Method `Texy\Modules\LinkModule::solveUrlEmail()` is removed: work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`, since texy/texy 4.0.
+41: Method `Texy\Modules\HtmlOutputModule::postProcess()` is removed: work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`, since texy/texy 4.0.
+42: Method `Texy\Modules\BlockQuoteModule::citeLink()` is removed: there is no replacement; support for the `cite` attribute is gone, since texy/texy 3.2.
+43: Method `Texy\Texy::process()` is replaced by `toHtml($text)`.
+44: Method `Texy\Texy::free()` is removed: the method was empty; drop the call, since texy/texy 3.0.
+45: Property `Texy\Modules\FigureModule::$requireCaption` is removed: there is no replacement, since texy/texy 3.2.8.
+46: Property `Texy\Modules\FigureModule::$widthDelta` is removed: size the figure with CSS, since texy/texy 3.2.8.
+47: Property `Texy\Modules\ImageModule::$defaultAlt` is removed: there is no replacement, since texy/texy 3.2.8.
+48: Property `Texy\Modules\ImageModule::$linkedRoot` is removed: there is no replacement, since texy/texy 3.2.8.
+49: Property `Texy\Modules\LinkModule::$imageClass` is removed: there is no replacement, since texy/texy 3.2.8.
+50: Property `Texy\Modules\EmoticonModule::$class` is removed: use `$texy->htmlOutput->emoticonClass`, since texy/texy 4.0.
+51: Property `Texy\Modules\EmoticonModule::$root` is removed: there is no replacement; emoticons are rendered as emoji characters, not as images, since texy/texy 3.1.
+52: Property `Texy\Modules\EmoticonModule::$fileRoot` is removed: there is no replacement; emoticons are rendered as emoji characters, not as images, since texy/texy 3.1.
+53: Property `Texy\Modules\TableModule::$oddClass` is removed: style the rows with CSS, since texy/texy 3.1.
+54: Property `Texy\Modules\TableModule::$evenClass` is removed: style the rows with CSS, since texy/texy 3.1.
+55: Constant `Texy\Texy::HTML4_STRICT` is removed: there is no replacement; the output is always HTML5, since texy/texy 3.1.
+56: Constant `TEXY_ALL` is removed: use the class constants of `Texy\Texy`, `Texy\Patterns` and `Texy\Modules\HeadingModule`, since texy/texy 3.0.
+57: Constant `TEXY_MODIFIER` is removed: use the class constants of `Texy\Texy`, `Texy\Patterns` and `Texy\Modules\HeadingModule`, since texy/texy 3.0.
+65: Static method `Texy\Texy::webalize()` is replaced by `Texy\Helpers::webalize()`.
+66: Static method `Texy\Texy::webalize()` is replaced by `Texy\Helpers::webalize()`.
+66: Static method `Texy\Helpers::webalize()` is replaced by `webalize($s)`.
+67: Static method `Texy\Helpers::webalize()` is replaced by `webalize($s)`.
+68: Static method `Texy\Texy::freezeSpaces()` is replaced by `Texy\Helpers::freezeSpaces()`.
+69: Static method `Texy\Texy::unfreezeSpaces()` is replaced by `Texy\Helpers::unfreezeSpaces()`.
+71: Static method `Texy\Texy::outdent()` is replaced by `Texy\Helpers::outdent()`.
+72: Static method `Texy\Texy::isRelative()` is replaced by `Texy\Helpers::isRelative()`.
+73: Static method `Texy\Texy::prependRoot()` is replaced by `Texy\Helpers::prependRoot()`.
+74: Static method `Texy\Texy::escapeHtml()` is replaced by `\htmlspecialchars($s, ENT_NOQUOTES, 'UTF-8')`.
+75: Static method `Texy\Texy::unescapeHtml()` is replaced by `Texy\Helpers::unescapeHtml()`.
+76: Method `Texy\Modules\BlockModule::outdent()` is replaced by `\Texy\Helpers::outdent($s)`.
+77: Static method `Texy\Utf::strtolower()` is replaced by `Texy\Helpers::toLower()`.
+78: Static method `Texy\Utf::utf2ascii()` is replaced by `Texy\Helpers::toAscii()`.
+79: Class `Texy\Utf` is removed: only UTF-8 is supported; call the helpers of `Texy\Helpers`, since texy/texy 3.0.
+79: Static method `Texy\Utf::toUtf()` is removed: the input is assumed to be UTF-8; drop the call, since texy/texy 3.0.
+80: Class `Texy\Utf` is removed: only UTF-8 is supported; call the helpers of `Texy\Helpers`, since texy/texy 3.0.
+80: Static method `Texy\Utf::utfTo()` is removed: the output is always UTF-8; drop the call, since texy/texy 3.0.
+81: Class `Texy\Utf` is removed: only UTF-8 is supported; call the helpers of `Texy\Helpers`, since texy/texy 3.0.
+81: Static method `Texy\Utf::utf2html()` is removed: the output is always UTF-8; drop the call where the page is UTF-8 too, since texy/texy 3.0.
+86: Class `Texy\Image` is removed: an image is a `Texy\Nodes\ImageNode` of the document tree, since texy/texy 4.0.
+86: Class `Texy\HandlerInvocation` is removed: the event system is gone; register a pass with `Texy\Texy::addPass()` or a renderer with `Texy\Output\Html\Config::addRenderer()`, since texy/texy 4.0.
+88: Class `TexyHtml` is removed: create a `Texy\Output\Html\Element` in a renderer, whose constructor takes attributes only, since texy/texy 4.0.
+89: Class `Texy\HtmlElement` is removed: create a `Texy\Output\Html\Element` in a renderer, whose constructor takes attributes only, since texy/texy 4.0.
+90: Class `Texy\HtmlElement` is removed: create a `Texy\Output\Html\Element` in a renderer, whose constructor takes attributes only, since texy/texy 4.0.
+91: Constructor `Texy\Modifier::__construct()` is replaced by `\Texy\Modifier::parse($m)`.
+92: Method `Texy\Modifier::setProperties()` is deprecated: create the modifier with `parse()`, since texy/texy 4.0.
+93: Property `Texy\Modifier::$cite` is removed: there is no replacement; support for the `cite` attribute is gone, since texy/texy 3.2.
+94: Property `Texy\Image::$overURL` is removed: there is no replacement; the mouse-over state of images is not supported, since texy/texy 3.0.
+95: Method `Texy\HandlerInvocation::free()` is removed: the method was empty; drop the call, since texy/texy 3.0.
+96: Class `Texy\Modules\LongWordsModule` is removed: there is no replacement; hyphenation is switched by `Texy\Config::$hyphenation`, since texy/texy 4.0.
+96: Constant `Texy\Modules\LongWordsModule::SAFE_LIMIT` is removed: there is no replacement; the constant is private, since texy/texy 3.1.6.
+97: Class `Texy\Modules\LongWordsModule` is removed: there is no replacement; hyphenation is switched by `Texy\Config::$hyphenation`, since texy/texy 4.0.
+97: Constant `Texy\Modules\LongWordsModule::DONT` is removed: there is no replacement; the constant is private, since texy/texy 3.1.6.
+98: Constant `Texy\Texy::HTML5` is removed: there is no replacement; the output is always HTML5, since texy/texy 3.1.
+99: Class `TexyLink` is removed: a link is a `Texy\Nodes\LinkNode` of the document tree, since texy/texy 4.0.
+100: Class `TexyConfigurator` is replaced by `Texy\Configurator`.
+106: Class `Texy\Bridges\Latte\TexyMacro` is removed: support for Latte 2 is gone; register `new Texy\Bridges\Latte\TexyExtension($texy)` with `Latte\Engine::addExtension()`, since texy/texy 3.2.6.
+116: Method `Texy\Texy::setOutputMode()` is removed: there is no replacement; the output is always HTML5, since texy/texy 3.1.
+116: Constant `Texy\Texy::HTML5` is removed: there is no replacement; the output is always HTML5, since texy/texy 3.1.
+117: Property `Texy\Texy::$cleaner` is removed: use `$texy->htmlOutput`, which holds the settings of HTML output, since texy/texy 4.0.
+118: Property `Texy\Texy::$encoding` is removed: the input and the output are always UTF-8; drop the setting, since texy/texy 3.0.
+119: Method `Texy\Texy::webalize()` is replaced by `Texy\Helpers::webalize()`, but `self::` may call the method on the object, which the other class cannot.
+120: Property `Texy\Modules\HtmlOutputModule::$removeOptional` is removed: optional end tags are never removed; drop the setting, since texy/texy 3.1.
+121: Constant `Texy\Texy::XML` is removed: there is no replacement; XHTML is not generated any more and the output is always HTML5, since texy/texy 3.1.
+125: Class `Texy\Utf` is removed: only UTF-8 is supported; call the helpers of `Texy\Helpers`, since texy/texy 3.0.
+127: Class `Texy\Utf` is removed: only UTF-8 is supported; call the helpers of `Texy\Helpers`, since texy/texy 3.0.
+127: Static method `Texy\Utf::strtolower()` is replaced by `Texy\Helpers::toLower()`.
+131: Method `Texy\Texy::free()` is removed: the method was empty; drop the call, since texy/texy 3.0.
+141: Class `Texy` is replaced by `Texy\Texy`.
+142: Method `Texy\Texy::process()` is replaced by `toHtml($text)`.
+143: Method `Texy\Texy::process()` is replaced by `toInlineHtml($text)`.
+144: Method `Texy\Texy::process()` is replaced by `toHtml($text)`.
+145: Method `Texy\Texy::processLine()` is replaced by `Texy::toInlineHtml()`.
+146: Method `Texy\Texy::processTypo()` is replaced by `Texy::applyTypography()`.
+147: Method `Texy\Texy::toText()` is deprecated: pass the Texy source, or render a parsed document with `renderText()`, since texy/texy 4.0.
+148: Property `Texy\Texy::$allowed` is replaced by `Texy::$allowedSyntax`.
+149: Property `Texy\Texy::$allowedTags` is replaced by `$this->htmlPolicy->allowedTags = $value`.
+149: Constant `Texy\Texy::ALL` is deprecated: use `true`, since texy/texy 4.0.
+150: Property `Texy\Texy::$allowedTags` is replaced by `$this->htmlPolicy->allowedTags`.
+151: Property `Texy\Texy::$allowedClasses` is replaced by `$this->htmlPolicy->allowedClasses = $value`.
+151: Constant `Texy\Texy::NONE` is deprecated: use `false`, since texy/texy 4.0.
+152: Property `Texy\Texy::$allowedStyles` is replaced by `$this->htmlPolicy->allowedStyles = $value`.
+153: Property `Texy\Texy::$obfuscateEmail` is replaced by `$this->htmlOutput->obfuscateEmail = $value`.
+154: Property `Texy\Texy::$mergeLines` is replaced by `$this->config->mergeLines = $value`.
+155: Property `Texy\Texy::$tabWidth` is removed: there is no replacement; a tab is one whitespace character; drop the setting, since texy/texy 4.0.
+156: Property `Texy\Texy::$removeSoftHyphens` is removed: there is no replacement; literal soft hyphens are always removed and `&shy;` keeps one; drop the setting, since texy/texy 4.0.
+157: Property `Texy\Texy::$alignClasses` is removed: use `$texy->htmlOutput->textAlignClasses` and `verticalAlignClasses`, since texy/texy 4.0.
+158: Property `Texy\Texy::$urlSchemeFilters` is removed: use `$texy->urlPolicy->linkPattern` and `imagePattern`, where `null` allows every scheme, since texy/texy 4.0.
+158: Constant `Texy\Texy::FILTER_ANCHOR` is removed: use `$texy->urlPolicy->linkPattern`, since texy/texy 4.0.
+159: Property `Texy\Texy::$nontextParagraph` is removed: use `$texy->htmlOutput->imageParagraphTag`, which holds a tag name only, since texy/texy 4.0.
+160: Property `Texy\Texy::$summary` is removed: read the links and images from the document returned by `parse()`, since texy/texy 4.0.
+161: Method `Texy\Texy::registerLinePattern()` is removed: call `addInlineSyntax($name, $pattern, $parser)`, whose parser gets a `Texy\Parsing\ParseContext` and returns a node, since texy/texy 4.0.
+162: Method `Texy\Texy::registerBlockPattern()` is removed: call `addBlockSyntax($name, $pattern, $parser)`, whose parser gets a `Texy\Parsing\ParseContext` and returns a node, since texy/texy 4.0.
+163: Method `Texy\Texy::registerPostLine()` is removed: register a pass over the document with `addPass()`, since texy/texy 4.0.
+164: Method `Texy\Texy::addHandler()` is removed: the event system is gone; register a pass with `addPass()` or a renderer with `Texy\Output\Html\Config::addRenderer()`, since texy/texy 4.0.
+165: Method `Texy\Texy::checkURL()` is removed: call `$texy->urlPolicy->isLinkAllowed()` or `isImageAllowed()`, since texy/texy 4.0.
+166: Method `Texy\Texy::getDOM()` is removed: call `parse()`, which returns the document tree, since texy/texy 4.0.
+167: Method `Texy\Texy::protect()` is removed: return a `Texy\Output\Html\Element` or `Texy\Output\Html\Raw` from a renderer, since texy/texy 4.0.
+167: Constant `Texy\Texy::CONTENT_MARKUP` is removed: there is no replacement; the protection marks are gone, since texy/texy 4.0.
+168: Property `Texy\Modules\ImageModule::$root` is removed: use `$texy->htmlOutput->imageBaseUrl`, since texy/texy 4.0.
+169: Property `Texy\Modules\ImageModule::$leftClass` is removed: use `$texy->htmlOutput->floatClasses['left']`, one class for images and figures, since texy/texy 4.0.
+170: Property `Texy\Modules\FigureModule::$tagName` is removed: use `$texy->htmlOutput->figureTag`, since texy/texy 4.0.
+171: Property `Texy\Modules\LinkModule::$root` is removed: use `$texy->htmlOutput->linkBaseUrl`, since texy/texy 4.0.
+172: Method `Texy\Modules\LinkModule::addReference()` is removed: use `$texy->config->linkResolver`, a closure that gets the name and the `Texy\Nodes\LinkNode` and returns the URL, since texy/texy 4.0.
+173: Property `Texy\Modules\HeadingModule::$top` is removed: use `$texy->config->headingTop`, since texy/texy 4.0.
+174: Property `Texy\Modules\HeadingModule::$balancing` is removed: use `$texy->config->headingBalancing`, which holds a case of `Texy\HeadingBalancing`, since texy/texy 4.0.
+174: Constant `Texy\Modules\HeadingModule::FIXED` is deprecated: use the case `Texy\HeadingBalancing::Fixed` in `$texy->config->headingBalancing`, since texy/texy 4.0.
+175: Property `Texy\Modules\HeadingModule::$TOC` is removed: read the headings from the document returned by `Texy\Texy::parse()` as `Texy\Nodes\HeadingNode`, since texy/texy 4.0.
+176: Property `Texy\Modules\PhraseModule::$tags` is removed: use `$texy->htmlOutput->phraseTags`, whose keys say what a phrase means, such as `emphasis`, instead of the syntax, since texy/texy 4.0.
+177: Property `Texy\Modules\TypographyModule::$locale` is removed: use `$texy->config->locale`, since texy/texy 4.0.
+178: Property `Texy\Modules\LongWordsModule::$wordLimit` is removed: use `$texy->config->hyphenationWordLimit`, since texy/texy 4.0.
+179: Property `Texy\Modules\HtmlOutputModule::$lineWrap` is removed: use `$texy->htmlOutput->lineWrap`, since texy/texy 4.0.
+180: Property `Texy\Modules\HtmlModule::$passComment` is removed: use `$texy->htmlOutput->passHtmlComments`, since texy/texy 4.0.
+181: Property `Texy\Modules\EmoticonModule::$icons` is removed: use `$texy->config->emoticons`, since texy/texy 4.0.
+182: Method `Texy\Modules\ImageModule::solve()` is removed: work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`, since texy/texy 4.0.
+182: Class `Texy\Image` is removed: an image is a `Texy\Nodes\ImageNode` of the document tree, since texy/texy 4.0.
+183: Constant `Texy\Texy::VERSION` is replaced by `Texy::Version`.
+190: Constant `Texy\Patterns::MODIFIER` is replaced by `Patterns::Modifier`.
+191: Constant `Texy\Patterns::LINK_URL` is replaced by `Patterns::LinkUrl`.
+192: Static method `Texy\Helpers::normalize()` is removed: call `Texy\Texy::normalize()`, which also removes the BOM and literal soft hyphens, since texy/texy 4.0.
+193: Static property `Texy\Configurator::$safeTags` is removed: read the constant `SafeTags`, which can no longer be changed, since texy/texy 4.0.
+194: Static property `Texy\Modifier::$elAttrs` is removed: read the constant `ElAttrs`, which can no longer be changed, since texy/texy 4.0.
+195: Constant `Texy\Regexp::OFFSET_CAPTURE` is removed: pass `captureOffset: true`, since texy/texy 4.0.
+196: Constructor `Texy\Modifier::__construct()` is replaced by `\Texy\Modifier::parse($m)`.
+197: Constructor `Texy\Modifier::__construct()` is replaced by `\Texy\Modifier::parse($m)`.
+207: Property `Texy\Module::$texy` is removed: there is no replacement; custom modules are not supported, since texy/texy 4.0.
+214: Class `Texy\Strict` is removed: there is no replacement; the trait is gone; undefined members follow plain PHP semantics, since texy/texy 3.2.

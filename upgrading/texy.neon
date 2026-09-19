@@ -1,0 +1,326 @@
+package: texy/texy
+
+since 4.0:
+	replacedClasses:
+		Texy: Texy\Texy
+		TexyHtml: keep
+		TexyImage: keep
+		TexyLink: keep
+		TexyLinkModule: keep
+		TexyLongWordsModule: keep
+		TexyTypographyModule: keep
+	replacedMembers:
+		Texy\Texy::VERSION: Version
+		Texy\Texy::$allowed: $allowedSyntax
+		Texy\Texy::$cleaner: keep
+		Texy\Texy::processLine: toInlineHtml
+		Texy\Texy::processTypo: applyTypography
+		Texy\Texy::normalize: keep
+		Texy\Texy::unProtect: keep
+		Texy\Patterns::CHAR: Letter
+		Texy\Patterns::LINK_URL: LinkUrl
+		Texy\Patterns::MODIFIER: Modifier
+		Texy\Patterns::MODIFIER_H: ModifierHAlign
+		Texy\Patterns::MODIFIER_HV: ModifierHVAlign
+		Texy\HtmlElement::INNER_TEXT: keep
+		Texy\HtmlElement::INNER_TRANSPARENT: keep
+	replacedCalls:
+		'Texy\Texy::process($text)': 'toHtml($text)'
+		'Texy\Texy::process($text, false)': 'toHtml($text)'
+		'Texy\Texy::process($text, true)': 'toInlineHtml($text)'
+		'Texy\Texy::$allowedTags::get': '$this->htmlPolicy->allowedTags'
+		'Texy\Texy::$allowedTags::set': '$this->htmlPolicy->allowedTags = $value'
+		'Texy\Texy::$allowedClasses::get': '$this->htmlPolicy->allowedClasses'
+		'Texy\Texy::$allowedClasses::set': '$this->htmlPolicy->allowedClasses = $value'
+		'Texy\Texy::$allowedStyles::get': '$this->htmlPolicy->allowedStyles'
+		'Texy\Texy::$allowedStyles::set': '$this->htmlPolicy->allowedStyles = $value'
+		'Texy\Texy::$obfuscateEmail::get': '$this->htmlOutput->obfuscateEmail'
+		'Texy\Texy::$obfuscateEmail::set': '$this->htmlOutput->obfuscateEmail = $value'
+		'Texy\Texy::$mergeLines::get': '$this->config->mergeLines'
+		'Texy\Texy::$mergeLines::set': '$this->config->mergeLines = $value'
+		'Texy\Modifier::__construct(mod: $m, ...)': keep
+		'Texy\Modifier::__construct(mod: $m)': {write: '\Texy\Modifier::parse($m)', because: '`parse()` returns `null` for an empty modifier'}
+		'Texy\Modifier::__construct(s: $m)': {write: '\Texy\Modifier::parse($m)', because: '`parse()` returns `null` for an empty modifier'}
+		'Texy\Modifier::setProperties(mod: $m)': keep
+	forbiddenClasses:
+		Texy\HandlerInvocation: 'the event system is gone; register a pass with `Texy\Texy::addPass()` or a renderer with `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Parser: 'a syntax handler receives a `Texy\Parsing\ParseContext`'
+		Texy\BlockParser: 'a syntax handler receives a `Texy\Parsing\ParseContext`'
+		Texy\LineParser: 'a syntax handler receives a `Texy\Parsing\ParseContext`'
+		Texy\HtmlElement: 'create a `Texy\Output\Html\Element` in a renderer, whose constructor takes attributes only'
+		TexyHtml: 'create a `Texy\Output\Html\Element` in a renderer, whose constructor takes attributes only'
+		Texy\Image: 'an image is a `Texy\Nodes\ImageNode` of the document tree'
+		TexyImage: 'an image is a `Texy\Nodes\ImageNode` of the document tree'
+		Texy\Link: 'a link is a `Texy\Nodes\LinkNode` of the document tree'
+		TexyLink: 'a link is a `Texy\Nodes\LinkNode` of the document tree'
+		Texy\Modules\TableCellElement: 'a table cell is a `Texy\Nodes\TableCellNode` of the document tree'
+		Texy\Modules\BlockModule: 'there is no replacement; modules are internal; handle custom `/--` blocks by `Texy\Config::$delimitedBlockHandler`'
+		Texy\Modules\FigureModule: 'there is no replacement; modules are internal'
+		Texy\Modules\HorizLineModule: 'there is no replacement; modules are internal'
+		Texy\Modules\LinkModule: 'there is no replacement; modules are internal'
+		TexyLinkModule: 'there is no replacement; modules are internal'
+		Texy\Modules\LongWordsModule: 'there is no replacement; hyphenation is switched by `Texy\Config::$hyphenation`'
+		TexyLongWordsModule: 'there is no replacement; hyphenation is switched by `Texy\Config::$hyphenation`'
+		Texy\Modules\TypographyModule: 'there is no replacement; typography is switched by `Texy\Config::$typography`'
+		TexyTypographyModule: 'there is no replacement; typography is switched by `Texy\Config::$typography`'
+		Texy\Modules\ScriptModule: 'handle the directives `{{name: ...}}` by `Texy\Config::$directiveHandler`'
+		Texy\Modules\HtmlOutputModule: 'use `Texy\Output\Html\Config`, reached as `$texy->htmlOutput`'
+	forbiddenMembers:
+		'Texy\Texy::process($text, $singleLine)': 'call `toHtml()`, or `toInlineHtml()` for a single line'
+		'Texy\Texy::toText()': 'pass the Texy source, or render a parsed document with `renderText()`'
+		Texy\Texy::ALL: 'use `true`'
+		Texy\Texy::NONE: 'use `false`'
+		Texy\Texy::loadModules: 'there is no replacement; modules are internal'
+		Texy\Texy::addHandler: 'the event system is gone; register a pass with `addPass()` or a renderer with `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Texy::invokeHandlers: 'the event system is gone; register a pass with `addPass()` or a renderer with `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Texy::invokeAroundHandlers: 'the event system is gone; register a pass with `addPass()` or a renderer with `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Texy::registerLinePattern: 'call `addInlineSyntax($name, $pattern, $parser)`, whose parser gets a `Texy\Parsing\ParseContext` and returns a node'
+		Texy\Texy::registerBlockPattern: 'call `addBlockSyntax($name, $pattern, $parser)`, whose parser gets a `Texy\Parsing\ParseContext` and returns a node'
+		Texy\Texy::registerPostLine: 'register a pass over the document with `addPass()`'
+		Texy\Texy::getLinePatterns: 'there is no replacement'
+		Texy\Texy::getBlockPatterns: 'there is no replacement'
+		Texy\Texy::protect: 'return a `Texy\Output\Html\Element` or `Texy\Output\Html\Raw` from a renderer'
+		Texy\Texy::unprotect: 'return a `Texy\Output\Html\Element` or `Texy\Output\Html\Raw` from a renderer'
+		Texy\Texy::unProtect: 'return a `Texy\Output\Html\Element` or `Texy\Output\Html\Raw` from a renderer'
+		Texy\Texy::stringToHtml: 'call `toHtml()` with the Texy source'
+		Texy\Texy::stringToText: 'call `toText()` with the Texy source'
+		Texy\Texy::checkURL: 'call `$texy->urlPolicy->isLinkAllowed()` or `isImageAllowed()`'
+		Texy\Texy::getDOM: 'call `parse()`, which returns the document tree'
+		Texy\Texy::CONTENT_BLOCK: 'there is no replacement; the protection marks are gone'
+		Texy\Texy::CONTENT_MARKUP: 'there is no replacement; the protection marks are gone'
+		Texy\Texy::CONTENT_REPLACED: 'there is no replacement; the protection marks are gone'
+		Texy\Texy::CONTENT_TEXTUAL: 'there is no replacement; the protection marks are gone'
+		Texy\Texy::FILTER_ANCHOR: 'use `$texy->urlPolicy->linkPattern`'
+		Texy\Texy::FILTER_IMAGE: 'use `$texy->urlPolicy->imagePattern`'
+		Texy\Texy::$urlSchemeFilters: 'use `$texy->urlPolicy->linkPattern` and `imagePattern`, where `null` allows every scheme'
+		Texy\Texy::$alignClasses: 'use `$texy->htmlOutput->textAlignClasses` and `verticalAlignClasses`'
+		Texy\Texy::$nontextParagraph: 'use `$texy->htmlOutput->imageParagraphTag`, which holds a tag name only'
+		Texy\Texy::$cleaner: 'use `$texy->htmlOutput`, which holds the settings of HTML output'
+		Texy\Texy::$summary: 'read the links and images from the document returned by `parse()`'
+		Texy\Texy::$tabWidth: 'there is no replacement; a tab is one whitespace character; drop the setting'
+		Texy\Texy::$removeSoftHyphens: 'there is no replacement; literal soft hyphens are always removed and `&shy;` keeps one; drop the setting'
+		Texy\Texy::$_classes: 'the property is private; the allowed classes are configured by `$texy->htmlPolicy->allowedClasses`'
+		Texy\Texy::$_styles: 'the property is private; the allowed styles are configured by `$texy->htmlPolicy->allowedStyles`'
+		Texy\Module::$texy: 'there is no replacement; custom modules are not supported'
+		Texy\Patterns::IMAGE: 'there is no replacement'
+		Texy\Patterns::MARK: 'there is no replacement; the protection marks are gone'
+		Texy\Modifier::decorate: 'there is no replacement; the HTML renderer applies the modifier to the element'
+		Texy\Modifier::setProperties: 'create the modifier with `parse()`'
+		Texy\Modifier::$elAttrs: 'read the constant `ElAttrs`, which can no longer be changed'
+		Texy\Configurator::$safeTags: 'read the constant `SafeTags`, which can no longer be changed'
+		Texy\Helpers::normalize: 'call `Texy\Texy::normalize()`, which also removes the BOM and literal soft hyphens'
+		Texy\Regexp::ALL: 'call `matchAll()`'
+		Texy\Regexp::OFFSET_CAPTURE: 'pass `captureOffset: true`'
+		Texy\Modules\HeadingModule::DYNAMIC: 'use the case `Texy\HeadingBalancing::Dynamic` in `$texy->config->headingBalancing`'
+		Texy\Modules\HeadingModule::FIXED: 'use the case `Texy\HeadingBalancing::Fixed` in `$texy->config->headingBalancing`'
+		Texy\Modules\HtmlModule::$passComment: 'use `$texy->htmlOutput->passHtmlComments`'
+		Texy\Modules\ImageModule::$root: 'use `$texy->htmlOutput->imageBaseUrl`'
+		Texy\Modules\ImageModule::$fileRoot: 'use `$texy->htmlOutput->imageBasePath`'
+		Texy\Modules\ImageModule::$leftClass: 'use `$texy->htmlOutput->floatClasses[''left'']`, one class for images and figures'
+		Texy\Modules\ImageModule::$rightClass: 'use `$texy->htmlOutput->floatClasses[''right'']`, one class for images and figures'
+		Texy\Modules\ImageModule::addReference: 'there is no replacement; define the image in the document, or set its URL in a pass over `Texy\Nodes\ImageNode`'
+		Texy\Modules\FigureModule::$leftClass: 'use `$texy->htmlOutput->floatClasses[''left'']`, one class for images and figures'
+		Texy\Modules\FigureModule::$rightClass: 'use `$texy->htmlOutput->floatClasses[''right'']`, one class for images and figures'
+		Texy\Modules\FigureModule::$tagName: 'use `$texy->htmlOutput->figureTag`'
+		Texy\Modules\FigureModule::$class: 'use `$texy->htmlOutput->figureClass`'
+		Texy\Modules\LinkModule::$root: 'use `$texy->htmlOutput->linkBaseUrl`'
+		Texy\Modules\LinkModule::$forceNoFollow: 'use `$texy->htmlOutput->linkNoFollow`'
+		Texy\Modules\LinkModule::$shorten: 'use `$texy->htmlOutput->shortenUrls`'
+		Texy\Modules\LinkModule::addReference: 'use `$texy->config->linkResolver`, a closure that gets the name and the `Texy\Nodes\LinkNode` and returns the URL'
+		Texy\Modules\PhraseModule::$tags: 'use `$texy->htmlOutput->phraseTags`, whose keys say what a phrase means, such as `emphasis`, instead of the syntax'
+		Texy\Modules\PhraseModule::$linksAllowed: 'use `$texy->allowedSyntax[''phrase/link'']`'
+		Texy\Modules\EmoticonModule::$icons: 'use `$texy->config->emoticons`'
+		Texy\Modules\EmoticonModule::$class: 'use `$texy->htmlOutput->emoticonClass`'
+		Texy\Modules\HeadingModule::$top: 'use `$texy->config->headingTop`'
+		Texy\Modules\HeadingModule::$generateID: 'use `$texy->config->headingIds`'
+		Texy\Modules\HeadingModule::$idPrefix: 'use `$texy->config->headingIdPrefix`'
+		Texy\Modules\HeadingModule::$moreMeansHigher: 'use `$texy->config->headingMoreMeansHigher`'
+		Texy\Modules\HeadingModule::$balancing: 'use `$texy->config->headingBalancing`, which holds a case of `Texy\HeadingBalancing`'
+		Texy\Modules\HeadingModule::$title: 'read the headings from the document returned by `Texy\Texy::parse()` as `Texy\Nodes\HeadingNode`'
+		Texy\Modules\HeadingModule::$TOC: 'read the headings from the document returned by `Texy\Texy::parse()` as `Texy\Nodes\HeadingNode`'
+		Texy\Modules\HeadingModule::$levels: 'there is no replacement; the levels of the underline characters are fixed'
+		Texy\Modules\HorizLineModule::$classes: 'use `$texy->htmlOutput->horizontalRuleClasses`'
+		Texy\Modules\ListModule::$bullets: 'there is no replacement; the bullets are fixed and the kinds of numbering are switched in `$texy->allowedSyntax`'
+		Texy\Modules\TypographyModule::$locale: 'use `$texy->config->locale`'
+		Texy\Modules\TypographyModule::$locales: 'use `$texy->config->locales`, whose rows hold four quotes under the key `quotes`'
+		Texy\Modules\LongWordsModule::$wordLimit: 'use `$texy->config->hyphenationWordLimit`'
+		Texy\Modules\HtmlOutputModule::$indent: 'use `$texy->htmlOutput->indent`'
+		Texy\Modules\HtmlOutputModule::$preserveSpaces: 'use `$texy->htmlOutput->preserveSpaces`'
+		Texy\Modules\HtmlOutputModule::$baseIndent: 'use `$texy->htmlOutput->baseIndent`'
+		Texy\Modules\HtmlOutputModule::$lineWrap: 'use `$texy->htmlOutput->lineWrap`'
+		Texy\Modules\ScriptModule::$separator: 'there is no replacement; the arguments of a directive are read by `$texy->config->directiveHandler`'
+		Texy\Modules\ScriptModule::$handler: 'use `$texy->config->directiveHandler`'
+		Texy\Modules\ImageModule::solve: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\ImageModule::getReference: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\ImageModule::factoryImage: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\LinkModule::solve: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\LinkModule::getReference: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\LinkModule::factoryLink: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\ParagraphModule::process: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\BlockModule::solve: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\BlockModule::beforeBlockParse: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\EmoticonModule::solve: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\EmoticonModule::beforeParse: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\FigureModule::solve: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\HeadingModule::solve: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\HeadingModule::beforeParse: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\HeadingModule::afterParse: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\HorizLineModule::solve: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\HtmlModule::solveTag: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\HtmlModule::solveComment: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\HtmlOutputModule::postProcess: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\HtmlOutputModule::wrap: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\HtmlOutputModule::cb: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\ImageModule::beforeParse: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\ImageModule::patternReferenceDef: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\LinkModule::beforeParse: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\LinkModule::patternReferenceDef: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\LinkModule::solveNewReference: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\LinkModule::solveUrlEmail: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\ListModule::beforeParse: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\ListModule::patternItem: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\LongWordsModule::pattern: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\ParagraphModule::solve: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\PhraseModule::solve: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+		Texy\Modules\ScriptModule::solve: 'work with the nodes in a pass registered by `Texy\Texy::addPass()` or a renderer registered by `Texy\Output\Html\Config::addRenderer()`'
+
+since 3.2.8:
+	replacedMembers:
+		Texy\Texy::unProtect: unprotect
+	forbiddenMembers:
+		Texy\Modules\FigureModule::$requireCaption: 'there is no replacement'
+		Texy\Modules\FigureModule::$widthDelta: 'size the figure with CSS'
+		Texy\Modules\ImageModule::$defaultAlt: 'there is no replacement'
+		Texy\Modules\ImageModule::$linkedRoot: 'there is no replacement'
+		Texy\Modules\LinkModule::$imageClass: 'there is no replacement'
+		Texy\Modules\EmoticonModule::$class: keep
+
+since 3.2.6:
+	forbiddenClasses:
+		Texy\Bridges\Latte\TexyMacro: 'support for Latte 2 is gone; register `new Texy\Bridges\Latte\TexyExtension($texy)` with `Latte\Engine::addExtension()`'
+
+since 3.2:
+	forbiddenClasses:
+		Texy\Strict: 'there is no replacement; the trait is gone; undefined members follow plain PHP semantics'
+	forbiddenMembers:
+		Texy\Modifier::$cite: 'there is no replacement; support for the `cite` attribute is gone'
+		Texy\Modules\BlockQuoteModule::citeLink: 'there is no replacement; support for the `cite` attribute is gone'
+		Texy\Modules\BlockModule::solve: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\BlockModule::beforeBlockParse: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\EmoticonModule::solve: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\EmoticonModule::beforeParse: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\FigureModule::solve: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\HeadingModule::solve: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\HeadingModule::beforeParse: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\HeadingModule::afterParse: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\HorizLineModule::solve: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\HtmlModule::solveTag: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\HtmlModule::solveComment: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\HtmlOutputModule::postProcess: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\HtmlOutputModule::wrap: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\HtmlOutputModule::cb: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\ImageModule::beforeParse: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\ImageModule::patternReferenceDef: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\LinkModule::beforeParse: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\LinkModule::patternReferenceDef: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\LinkModule::solveNewReference: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\LinkModule::solveUrlEmail: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\ListModule::beforeParse: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\ListModule::patternItem: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\LongWordsModule::pattern: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\ParagraphModule::solve: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\PhraseModule::solve: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+		Texy\Modules\ScriptModule::solve: 'the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`'
+
+since 3.1.6:
+	replacedMembers:
+		Texy\HtmlElement::INNER_TEXT: InnerText
+		Texy\HtmlElement::INNER_TRANSPARENT: InnerTransparent
+	forbiddenMembers:
+		Texy\Modules\LongWordsModule::DONT: 'there is no replacement; the constant is private'
+		Texy\Modules\LongWordsModule::HERE: 'there is no replacement; the constant is private'
+		Texy\Modules\LongWordsModule::AFTER: 'there is no replacement; the constant is private'
+		Texy\Modules\LongWordsModule::SAFE_LIMIT: 'there is no replacement; the constant is private'
+
+since 3.1.1:
+	replacedMembers:
+		Texy\Texy::unescapeHtml: Texy\Helpers::unescapeHtml
+	replacedCalls:
+		'Texy\Texy::unescapeHtml($s)': keep
+		'Texy\Modifier::__construct(mod: $m, ...)': 'new \Texy\Modifier(s: $m, ...)'
+		'Texy\Modifier::setProperties(mod: $m)': 'setProperties(s: $m)'
+	forbiddenMembers:
+		Texy\Modules\ScriptModule::$handler: 'register a handler of the `script` event with `Texy\Texy::addHandler()`, which receives the parser, the command, the arguments and the raw text'
+
+since 3.1:
+	forbiddenMembers:
+		Texy\Texy::setOutputMode: 'there is no replacement; the output is always HTML5'
+		Texy\Texy::getOutputMode: 'there is no replacement; the output is always HTML5'
+		Texy\Texy::$xhtml: 'there is no replacement; the output is always HTML5; drop the setting'
+		Texy\Texy::$strictDTD: 'there is no replacement; the output is always HTML5; drop the setting'
+		Texy\Texy::$dtd: 'the DTD is a static read-only table and can no longer be changed at run time'
+		Texy\Texy::$_classes: 'the property is private; the allowed classes are configured by `$allowedClasses`'
+		Texy\Texy::$_styles: 'the property is private; the allowed styles are configured by `$allowedStyles`'
+		Texy\HtmlElement::$xhtml: 'there is no replacement; the output is always HTML5; drop the setting'
+		Texy\Texy::HTML4_TRANSITIONAL: 'there is no replacement; the output is always HTML5'
+		Texy\Texy::HTML4_STRICT: 'there is no replacement; the output is always HTML5'
+		Texy\Texy::HTML5: 'there is no replacement; the output is always HTML5'
+		Texy\Texy::XHTML1_TRANSITIONAL: 'there is no replacement; XHTML is not generated any more and the output is always HTML5'
+		Texy\Texy::XHTML1_STRICT: 'there is no replacement; XHTML is not generated any more and the output is always HTML5'
+		Texy\Texy::XHTML5: 'there is no replacement; XHTML is not generated any more and the output is always HTML5'
+		Texy\Texy::XML: 'there is no replacement; XHTML is not generated any more and the output is always HTML5'
+		Texy\Modules\HtmlOutputModule::$removeOptional: 'optional end tags are never removed; drop the setting'
+		Texy\Modules\EmoticonModule::$class: 'there is no replacement; emoticons are rendered as emoji characters, not as images'
+		Texy\Modules\EmoticonModule::$root: 'there is no replacement; emoticons are rendered as emoji characters, not as images'
+		Texy\Modules\EmoticonModule::$fileRoot: 'there is no replacement; emoticons are rendered as emoji characters, not as images'
+		Texy\Modules\TableModule::$oddClass: 'style the rows with CSS'
+		Texy\Modules\TableModule::$evenClass: 'style the rows with CSS'
+
+since 3.0:
+	replacedClasses:
+		TexyConfigurator: Texy\Configurator
+		TexyHtml: Texy\HtmlElement
+		TexyImage: Texy\Image
+		TexyLink: Texy\Link
+		TexyModifier: Texy\Modifier
+		TexyPatterns: Texy\Patterns
+		TexyHeadingModule: Texy\Modules\HeadingModule
+		TexyLinkModule: Texy\Modules\LinkModule
+		TexyLongWordsModule: Texy\Modules\LongWordsModule
+		TexyTypographyModule: Texy\Modules\TypographyModule
+	replacedMembers:
+		Texy\Texy::$cleaner: $htmlOutputModule
+		Texy\Utf::strtolower: Texy\Helpers::toLower
+		Texy\Utf::utf2ascii: Texy\Helpers::toAscii
+		Texy\Texy::freezeSpaces: Texy\Helpers::freezeSpaces
+		Texy\Texy::unfreezeSpaces: Texy\Helpers::unfreezeSpaces
+		Texy\Texy::isRelative: Texy\Helpers::isRelative
+		Texy\Texy::normalize: Texy\Helpers::normalize
+		Texy\Texy::outdent: Texy\Helpers::outdent
+		Texy\Texy::prependRoot: Texy\Helpers::prependRoot
+		Texy\Texy::webalize: Texy\Helpers::webalize
+	replacedCalls:
+		'Texy\Modules\BlockModule::outdent($s)': '\Texy\Helpers::outdent($s)'
+		'Texy\Texy::escapeHtml($s)': '\htmlspecialchars($s, ENT_NOQUOTES, ''UTF-8'')'
+		'Texy\Texy::unescapeHtml($s)': '\html_entity_decode($s, ENT_QUOTES, ''UTF-8'')'
+		'Texy\Helpers::webalize($s, null)': 'webalize($s)'
+	forbiddenClasses:
+		Texy\Utf: 'only UTF-8 is supported; call the helpers of `Texy\Helpers`'
+	forbiddenConstants:
+		'TEXY_*': 'use the class constants of `Texy\Texy`, `Texy\Patterns` and `Texy\Modules\HeadingModule`'
+	forbiddenMembers:
+		Texy\Utf::toUtf: 'the input is assumed to be UTF-8; drop the call'
+		Texy\Utf::utfTo: 'the output is always UTF-8; drop the call'
+		Texy\Utf::utf2html: 'the output is always UTF-8; drop the call where the page is UTF-8 too'
+		Texy\Texy::REVISION: 'there is no replacement; `VERSION` holds the version'
+		Texy\Texy::free: 'the method was empty; drop the call'
+		Texy\HandlerInvocation::free: 'the method was empty; drop the call'
+		Texy\Texy::$encoding: 'the input and the output are always UTF-8; drop the setting'
+		Texy\Texy::$styleSheet: 'there is no replacement; Texy never read the property; keep the stylesheet in a variable of the application'
+		Texy\Texy::$advertisingNotice: 'the property had no effect since it was deprecated; drop the setting'
+		Texy\Texy::$xhtml: 'choose the output mode with `setOutputMode()`'
+		Texy\Texy::$strictDTD: 'call `setOutputMode()` with `Texy\Texy::XHTML1_STRICT` or `Texy\Texy::XHTML1_TRANSITIONAL`'
+		Texy\Image::$overURL: 'there is no replacement; the mouse-over state of images is not supported'
+		Texy\Modules\ImageModule::$onLoad: 'there is no replacement; the mouse-over state of images is not supported'
+		Texy\Modules\LinkModule::$imageOnClick: 'there is no replacement; pop-up links are not supported'
+		Texy\Modules\LinkModule::$popupOnClick: 'there is no replacement; pop-up links are not supported'
