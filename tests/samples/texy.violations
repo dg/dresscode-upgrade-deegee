@@ -1,0 +1,82 @@
+22: Method `Texy\Texy::setOutputMode()` is removed: there is no replacement; the output is always HTML5, since texy/texy 3.1.
+22: Constant `Texy\Texy::XHTML1_STRICT` is deprecated: there is no replacement; XHTML is not generated any more and the output is always HTML5, since texy/texy 3.1.
+23: Method `Texy\Texy::getOutputMode()` is removed: there is no replacement; the output is always HTML5, since texy/texy 3.1.
+24: Property `Texy\Texy::$encoding` is removed: the input and the output are always UTF-8; drop the setting, since texy/texy 3.0.
+25: Property `Texy\Texy::$styleSheet` is removed: there is no replacement; Texy never read the property; keep the stylesheet in a variable of the application, since texy/texy 3.0.
+26: Property `Texy\Texy::$xhtml` is removed: there is no replacement; the output is always HTML5; drop the setting, since texy/texy 3.1.
+27: Static property `Texy\Texy::$strictDTD` is removed: there is no replacement; the output is always HTML5; drop the setting, since texy/texy 3.1.
+28: Static property `Texy\Texy::$advertisingNotice` is removed: the property had no effect since it was deprecated; drop the setting, since texy/texy 3.0.
+29: Property `Texy\Texy::$cleaner` is replaced by `Texy::$htmlOutputModule`.
+30: Property `Texy\Modules\HtmlOutputModule::$removeOptional` is removed: optional end tags are never removed; drop the setting, since texy/texy 3.1.
+31: Property `Texy\Modules\LinkModule::$popupOnClick` is removed: there is no replacement; pop-up links are not supported, since texy/texy 3.0.
+32: Property `Texy\Modules\LinkModule::$imageOnClick` is removed: there is no replacement; pop-up links are not supported, since texy/texy 3.0.
+33: Property `Texy\Modules\ImageModule::$onLoad` is removed: there is no replacement; the mouse-over state of images is not supported, since texy/texy 3.0.
+34: Property `Texy\Modules\ScriptModule::$handler` is removed: register a handler of the `script` event with `Texy\Texy::addHandler()`, which receives the parser, the command, the arguments and the raw text, since texy/texy 3.1.1.
+35: Property `Texy\Texy::$dtd` is removed: the DTD is a static read-only table and can no longer be changed at run time, since texy/texy 3.1.
+36: Property `Texy\Texy::$_classes` is deprecated: the property is private; the allowed classes are configured by `$allowedClasses`, since texy/texy 3.1.
+37: Property `Texy\Texy::$_styles` is deprecated: the property is private; the allowed styles are configured by `$allowedStyles`, since texy/texy 3.1.
+38: Static property `Texy\HtmlElement::$xhtml` is removed: there is no replacement; the output is always HTML5; drop the setting, since texy/texy 3.1.
+39: Constant `Texy\Texy::REVISION` is removed: there is no replacement; `VERSION` holds the version, since texy/texy 3.0.
+40: Method `Texy\Modules\LinkModule::solveUrlEmail()` is deprecated: the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`, since texy/texy 3.2.
+41: Method `Texy\Modules\HtmlOutputModule::postProcess()` is deprecated: the method is private; customize the output with a handler registered by `Texy\Texy::addHandler()`, since texy/texy 3.2.
+42: Method `Texy\Modules\BlockQuoteModule::citeLink()` is removed: there is no replacement; support for the `cite` attribute is gone, since texy/texy 3.2.
+44: Method `Texy\Texy::free()` is removed: the method was empty; drop the call, since texy/texy 3.0.
+45: Property `Texy\Modules\FigureModule::$requireCaption` is deprecated: there is no replacement, since texy/texy 3.2.8.
+46: Property `Texy\Modules\FigureModule::$widthDelta` is deprecated: size the figure with CSS, since texy/texy 3.2.8.
+47: Property `Texy\Modules\ImageModule::$defaultAlt` is deprecated: there is no replacement, since texy/texy 3.2.8.
+48: Property `Texy\Modules\ImageModule::$linkedRoot` is deprecated: there is no replacement, since texy/texy 3.2.8.
+49: Property `Texy\Modules\LinkModule::$imageClass` is deprecated: there is no replacement, since texy/texy 3.2.8.
+51: Property `Texy\Modules\EmoticonModule::$root` is deprecated: there is no replacement; emoticons are rendered as emoji characters, not as images, since texy/texy 3.1.
+52: Property `Texy\Modules\EmoticonModule::$fileRoot` is deprecated: there is no replacement; emoticons are rendered as emoji characters, not as images, since texy/texy 3.1.
+53: Property `Texy\Modules\TableModule::$oddClass` is deprecated: style the rows with CSS, since texy/texy 3.1.
+54: Property `Texy\Modules\TableModule::$evenClass` is deprecated: style the rows with CSS, since texy/texy 3.1.
+55: Constant `Texy\Texy::HTML4_STRICT` is deprecated: there is no replacement; the output is always HTML5, since texy/texy 3.1.
+56: Constant `TEXY_ALL` is removed: use the class constants of `Texy\Texy`, `Texy\Patterns` and `Texy\Modules\HeadingModule`, since texy/texy 3.0.
+57: Constant `TEXY_MODIFIER` is removed: use the class constants of `Texy\Texy`, `Texy\Patterns` and `Texy\Modules\HeadingModule`, since texy/texy 3.0.
+65: Static method `Texy\Texy::webalize()` is replaced by `Texy\Helpers::webalize()`.
+66: Static method `Texy\Texy::webalize()` is replaced by `Texy\Helpers::webalize()`.
+66: Static method `Texy\Helpers::webalize()` is replaced by `webalize($s)`.
+67: Static method `Texy\Helpers::webalize()` is replaced by `webalize($s)`.
+68: Static method `Texy\Texy::freezeSpaces()` is replaced by `Texy\Helpers::freezeSpaces()`.
+69: Static method `Texy\Texy::unfreezeSpaces()` is replaced by `Texy\Helpers::unfreezeSpaces()`.
+70: Static method `Texy\Texy::normalize()` is replaced by `Texy\Helpers::normalize()`.
+71: Static method `Texy\Texy::outdent()` is replaced by `Texy\Helpers::outdent()`.
+72: Static method `Texy\Texy::isRelative()` is replaced by `Texy\Helpers::isRelative()`.
+73: Static method `Texy\Texy::prependRoot()` is replaced by `Texy\Helpers::prependRoot()`.
+74: Static method `Texy\Texy::escapeHtml()` is replaced by `\htmlspecialchars($s, ENT_NOQUOTES, 'UTF-8')`.
+75: Static method `Texy\Texy::unescapeHtml()` is replaced by `Texy\Helpers::unescapeHtml()`.
+76: Method `Texy\Modules\BlockModule::outdent()` is replaced by `\Texy\Helpers::outdent($s)`.
+77: Static method `Texy\Utf::strtolower()` is replaced by `Texy\Helpers::toLower()`.
+78: Static method `Texy\Utf::utf2ascii()` is replaced by `Texy\Helpers::toAscii()`.
+79: Class `Texy\Utf` is removed: only UTF-8 is supported; call the helpers of `Texy\Helpers`, since texy/texy 3.0.
+79: Static method `Texy\Utf::toUtf()` is removed: the input is assumed to be UTF-8; drop the call, since texy/texy 3.0.
+80: Class `Texy\Utf` is removed: only UTF-8 is supported; call the helpers of `Texy\Helpers`, since texy/texy 3.0.
+80: Static method `Texy\Utf::utfTo()` is removed: the output is always UTF-8; drop the call, since texy/texy 3.0.
+81: Class `Texy\Utf` is removed: only UTF-8 is supported; call the helpers of `Texy\Helpers`, since texy/texy 3.0.
+81: Static method `Texy\Utf::utf2html()` is removed: the output is always UTF-8; drop the call where the page is UTF-8 too, since texy/texy 3.0.
+88: Class `TexyHtml` is replaced by `Texy\HtmlElement`.
+89: Constant `Texy\HtmlElement::INNER_TEXT` is replaced by `HtmlElement::InnerText`.
+90: Constant `Texy\HtmlElement::INNER_TRANSPARENT` is replaced by `HtmlElement::InnerTransparent`.
+91: Constructor `Texy\Modifier::__construct()` is replaced by `new \Texy\Modifier(s: $m, ...)`.
+92: Method `Texy\Modifier::setProperties()` is replaced by `setProperties(s: $m)`.
+93: Property `Texy\Modifier::$cite` is removed: there is no replacement; support for the `cite` attribute is gone, since texy/texy 3.2.
+94: Property `Texy\Image::$overURL` is removed: there is no replacement; the mouse-over state of images is not supported, since texy/texy 3.0.
+95: Method `Texy\HandlerInvocation::free()` is removed: the method was empty; drop the call, since texy/texy 3.0.
+96: Constant `Texy\Modules\LongWordsModule::SAFE_LIMIT` is removed: there is no replacement; the constant is private, since texy/texy 3.1.6.
+97: Constant `Texy\Modules\LongWordsModule::DONT` is removed: there is no replacement; the constant is private, since texy/texy 3.1.6.
+98: Constant `Texy\Texy::HTML5` is deprecated: there is no replacement; the output is always HTML5, since texy/texy 3.1.
+99: Class `TexyLink` is replaced by `Texy\Link`.
+100: Class `TexyConfigurator` is replaced by `Texy\Configurator`.
+106: Class `Texy\Bridges\Latte\TexyMacro` is removed: support for Latte 2 is gone; register `new Texy\Bridges\Latte\TexyExtension($texy)` with `Latte\Engine::addExtension()`, since texy/texy 3.2.6.
+116: Method `Texy\Texy::setOutputMode()` is removed: there is no replacement; the output is always HTML5, since texy/texy 3.1.
+116: Constant `Texy\Texy::HTML5` is deprecated: there is no replacement; the output is always HTML5, since texy/texy 3.1.
+117: Property `Texy\Texy::$cleaner` is replaced by `Texy::$htmlOutputModule`.
+118: Property `Texy\Texy::$encoding` is removed: the input and the output are always UTF-8; drop the setting, since texy/texy 3.0.
+119: Method `Texy\Texy::webalize()` is replaced by `Texy\Helpers::webalize()`, but `self::` may call the method on the object, which the other class cannot.
+120: Property `Texy\Modules\HtmlOutputModule::$removeOptional` is removed: optional end tags are never removed; drop the setting, since texy/texy 3.1.
+121: Constant `Texy\Texy::XML` is deprecated: there is no replacement; XHTML is not generated any more and the output is always HTML5, since texy/texy 3.1.
+125: Class `Texy\Utf` is removed: only UTF-8 is supported; call the helpers of `Texy\Helpers`, since texy/texy 3.0.
+127: Class `Texy\Utf` is removed: only UTF-8 is supported; call the helpers of `Texy\Helpers`, since texy/texy 3.0.
+127: Static method `Texy\Utf::strtolower()` is replaced by `Texy\Helpers::toLower()`.
+131: Method `Texy\Texy::free()` is removed: the method was empty; drop the call, since texy/texy 3.0.
+139: Class `Texy\Strict` is removed: there is no replacement; the trait is gone; undefined members follow plain PHP semantics, since texy/texy 3.2.
